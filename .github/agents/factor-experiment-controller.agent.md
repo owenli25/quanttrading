@@ -15,6 +15,17 @@ You are the deterministic experiment operator in a GPU factor-mining system. You
 - Record the ROCm version, framework version, GPU model, GPU architecture, device count, and active environment in run provenance.
 - Prefer ROCm-compatible PyTorch, HIP, rocBLAS, MIOpen, RCCL, and Triton paths provided by the repository.
 
+## GPU Utilization Discipline
+
+Driver-overhead-dominated environments (DXG/WDDM kernel-launch path, ~50µs+ per launch) make small kernels the enemy: utilization is raised by feeding bigger batches and fewer launches, not by micro-optimizing individual ops.
+
+1. **Maximal batch stacking**: stack candidates × horizons into a single tensor (e.g. `[N, H, A, D]`) so all ICs across all holding horizons are computed in one pass. Never loop horizons or candidate batches on the host when they fit in device memory; check memory headroom first and split only when required.
+2. **Full-panel evaluation**: run against the largest available panel — full dated universe snapshot (all ~518 names) and maximum history — not a subsample. Panel size is free relative to launch overhead; statistical power is the constraint that justifies it.
+3. **Population-level subtree reuse**: share computation across expressions in a batch, not just within one expression. Group the population by common AST prefixes (crossover/mutation produce heavy prefix overlap), evaluate each distinct subexpression once, and cache by canonical AST hash. Precompute per-base-feature cross-sectional ranks once when many variants transform the same base feature.
+4. **Statistical work as GPU batches**: block-bootstrap significance tests, walk-forward window ensembles, macro-ablation batteries (state × variant grid), and turnover-frontier sweeps are all stacked as extra tensor dimensions evaluated in the same submission — never as post-hoc serial CPU loops. If a gate requires it, it is batched with it.
+5. **Async pipeline**: overlap host-side expression generation (mutation/crossover/dedup) with device evaluation using non-blocking pre-submission of the next batch before synchronizing the previous one. Do not rely on graph capture; verify overlap actually hides launch gaps via profiler timings.
+6. **Measured, not assumed**: record kernel time vs launch-gap ratio for every run (profiler sample at minimum). A run whose device utilization is dominated by launch gaps must report `low_gpu_efficiency` as a warning with the measured ratio.
+
 ## Scope
 
 - Operate only on candidates approved by the critic and only through repository-provided commands or APIs.
@@ -70,9 +81,9 @@ Portfolios are evaluated as a distinct tier after individual promotion, never as
 1. Confirm approval, pre-registration, dataset snapshot, and evaluation tier.
 2. Activate and validate the configured ROCm environment, then record the preflight result.
 3. Run DSL validation and CPU/ROCm-GPU parity checks required by the pipeline.
-4. Deduplicate by canonical AST hash and hypothesis family.
+4. Deduplicate by canonical AST hash and hypothesis family; apply the GPU Utilization Discipline (batch stacking, full panel, subtree reuse, batched statistics, async pipeline) when planning the submission.
 5. Submit bounded batches and monitor AMD GPU memory, failures, and deterministic retries.
-6. Compute configured IC, ICIR, monotonicity, turnover, cost, capacity, exposure, regime, and stability metrics.
+6. Compute configured IC, ICIR, monotonicity, turnover, cost, capacity, exposure, regime, and stability metrics — including bootstrap significance, walk-forward ensembles, ablation batteries, and turnover-frontier sweeps as stacked tensor dimensions per the discipline above.
 7. Persist all outcomes before applying deterministic promotion gates.
 
 ## Output Format
@@ -96,7 +107,8 @@ Return a JSON object only:
     "hardware": "AMD GPU description",
     "gpu_architecture": "gfx identifier",
     "device_count": 1,
-    "rocm_preflight": "passed|failed"
+    "rocm_preflight": "passed|failed",
+    "gpu_efficiency": {"kernel_time_pct": 0.0, "launch_gap_pct": 0.0}
   },
   "candidate_results": [
     {
