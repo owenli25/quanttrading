@@ -53,6 +53,99 @@ FEATURE_BUCKETS = {
 DEFAULT_BUCKET = "other"
 
 
+# ---------- 退化结构分析 + 结构签名 (2026-08-22) ----------
+def prune_dead_subtrees(e: tuple):
+    """剪掉数学上退化为常数的子树.
+
+    规则 (截面排序不变性): 常数子树在 cs_rank/cs_zscore/cs_demean 下
+    输出全零向量; ts_min/ts_max 对常数输入仍为常数. 递归剪枝:
+      - ("feat", x)          -> 保留
+      - op 为纯截面算子且任一参数为常数叶子 -> 该参数替换为 None
+      - 参数全为常数/None 的子树 -> 整体视为常数
+    返回 (剪枝后的树, is_constant).
+    """
+    if not isinstance(e, tuple):
+        return e, True
+    if e[0] == "feat":
+        return e, False
+    if e[0] == "const":
+        return None, True
+    op = e[0]
+    args, consts = [], []
+    for a in e[1:]:
+        pa, is_c = prune_dead_subtrees(a)
+        args.append(pa)
+        consts.append(is_c)
+    if all(consts):
+        return None, True
+    # 截面算子的常数参数是死代码 (排序不变); 时序算子的常数参数有效
+    if op in ("add", "sub"):
+        # 加减常数不改截面排序 → 死参数记为 DEAD 占位符 (不静默丢弃)
+        live = [(i, pa) for i, (pa, is_c) in enumerate(zip(args, consts))
+                if not is_c]
+        dead = [i for i, (_, is_c) in enumerate(zip(args, consts)) if is_c]
+        if not live:
+            return None, True
+        base_i, base_pa = live[0]
+        e_out = base_pa
+        for j in dead:
+            e_out = ("add", e_out, "<DEAD>") if op == "add" else ("sub", e_out, "<DEAD>")
+        for i, pa in live[1:]:
+            e_out = (op, e_out, pa)
+        return e_out, False
+    if op in ("cs_rank", "cs_zscore", "cs_demean"):
+        # 截面算子的常数参数排序不变 → 死参数, 但保留占位符以区分结构位置
+        if args[0] is None and consts[0]:
+            return ("<RANK-DEAD>",), True   # cs_rank(纯常数) 无信息
+        return (op, args[0]), False
+    if any(pa is None for pa in args):
+        return None, True           # 时序算子吃常数 -> 常数
+    return (op, *args), False
+
+
+def structural_signature(e: tuple) -> str:
+    """剥离全部常量为占位符后的规范化字符串 — 同构异参同签名."""
+    def canon(t):
+        if not isinstance(t, tuple):
+            return str(t)
+        if t[0] == "const":
+            return "<C>"
+        if t[0] == "feat":
+            return f"F:{t[1]}"
+        if t[0] == "<RANK-DEAD>":
+            return "<RD>"
+        # 截面排序外壳透明化: cs_rank/cs_zscore/cs_demean 不改变横截面排序,
+        # 包裹与否同效 → 签名相同
+        if t[0] in ("cs_rank", "cs_zscore", "cs_demean") and len(t) == 2 \
+                and isinstance(t[1], tuple):
+            return canon(t[1])
+        args = []
+        for a in t[1:]:
+            if isinstance(a, tuple):
+                args.append(canon(a))
+            elif isinstance(a, int):
+                args.append("<W>")
+            else:
+                args.append("<C>")
+        return f"{t[0]}({','.join(args)})"
+    # 注意: 不做整树 DEGENERATE 判定 — 含 -inf/NaN 传播路径的表达式
+    # 行为依赖算子实现细节 (实测 log1p(-1.0) 链输出非均匀面板),
+    # 静态剪枝不可靠. 死参数统一替换为 <DEAD> 占位符参与签名:
+    # 死参数选择不同的变体会得到相同签名从而被合并.
+    pruned, _ = prune_dead_subtrees(e)
+    if pruned is None:
+        return "DEAD"          # 仅当整树字面常数时
+    sig = canon(pruned)
+    if "<DEAD>" in sig or "None" in sig:
+        pass                   # 已由 prune 替换, canon 会输出占位符
+    return sig
+
+
+def degenerate_by_variance(S_row: torch.Tensor, tol: float = 1e-9) -> bool:
+    """截面方差≈0 的因子无排序信息."""
+    return bool(torch.nan_to_num(S_row).std() < tol)
+
+
 def bucket_of(e: tuple) -> str:
     """按表达式引用最多的特征族分桶; 无特征命中则 other."""
     s = expr_str(e)
@@ -303,6 +396,18 @@ class FactorMiner:
         pool = {}
         for e in cand_trees + list(elite_by_name.values()):
             pool[expr_str(e)] = e
+        # 结构签名去重: 同签名只留 fitness 最高的变体 (DEAD 整树除外)
+        sig_fit: dict[str, float] = {}
+        sig_tree: dict[str, tuple] = {}
+        for s_, e_ in pool.items():
+            sig = structural_signature(e_)
+            f_ = cand_fit.get(s_, -9e9)
+            if sig == "DEAD":
+                continue
+            if sig not in sig_fit or f_ > sig_fit[sig]:
+                sig_fit[sig] = f_
+                sig_tree[sig] = e_
+        pool = {expr_str(e): e for e in sig_tree.values()}
         buckets: dict[str, list] = defaultdict(list)
         for s, e in pool.items():
             buckets[bucket_of(e)].append((cand_fit.get(s, -9e9), s, e))
@@ -387,11 +492,46 @@ class FactorMiner:
             ref_df, ref_S = self.refine(top_trees)
             if ref_S is not None:
                 keep = ~ref_df["factor"].isin(set(df["factor"]))
+                # 全局签名去重: 精修变体间 + 变体与原精英间
                 df = pd.concat([df, ref_df[keep]], ignore_index=True)
                 S = torch.cat([S, ref_S[keep.to_numpy()]], dim=0)
+                df = df.sort_values("ICIR", ascending=False).reset_index(drop=True)
+                seen_sig: set[str] = set()
+                keep_rows = []
+                for i, row in df.iterrows():
+                    # expr 列只在终评 df 有; 变体行用 factor 字符串反查树不可行,
+                    # 直接对 factor 字符串做常量归一化签名 (轻量近似)
+                    import re as _re
+                    sig = _re.sub(r"-?\d+\.\d+", "<C>", row["factor"])
+                    # 剥掉截面排序外壳 (不改横截面排序): 正确配对右括号
+                    for _ in range(4):
+                        m = _re.search(r"(cs_rank|cs_zscore|cs_demean)\(", sig)
+                        if not m:
+                            break
+                        start, depth, j = m.end(), 1, m.end()
+                        while j < len(sig) and depth:
+                            if sig[j] == "(":
+                                depth += 1
+                            elif sig[j] == ")":
+                                depth -= 1
+                                if depth == 0:
+                                    break
+                            j += 1
+                        inner = sig[start:j]
+                        sig = sig[:m.start()] + inner + sig[j + 1:]
+                    # 窗口/常量归一
+                    sig = _re.sub(r"(?<![\w])\b(5|10|20|60|120|1)\b(?!\d)", "<N>", sig)
+                    if sig in seen_sig:
+                        continue
+                    seen_sig.add(sig)
+                    keep_rows.append(i)
+                df = df.loc[keep_rows].reset_index(drop=True)
+                S = S[torch.tensor(keep_rows, device=S.device)]
                 df = df.sort_values("fitness", ascending=False).reset_index(drop=True)
         # 返回前裁剪: 调用方只用 top60, S 保留对应行即可 (省 ~97% 面板内存)
         df = df.reset_index(drop=True)
+        if "degenerate" not in df.columns:
+            df["degenerate"] = False
         S = S[df.head(60).index.to_numpy()]
         df = df.head(60).reset_index(drop=True)
         return df, S
@@ -415,7 +555,13 @@ class FactorMiner:
         for pi in range(0, len(variants), BATCH):
             db, Sb = self.evaluate_with_fitness(variants[pi:pi + BATCH])
             db["parent_id"] = owner[pi:pi + len(db)]
-            # 每批内: 每 parent 取 fitness 最优
+            # 每批内: 先剔退化变体, 每 parent 取 fitness 最优
+            if "degenerate" not in db.columns:
+                db["degenerate"] = False
+            db = db[~db["degenerate"].astype(bool)]
+            if db.empty:
+                del db
+                continue
             bi = db.groupby("parent_id")["fitness"].idxmax().to_numpy()
             best_rows.append(db.loc[bi])
             best_pos_in_batch.append(bi - pi)   # 批内行号
