@@ -26,6 +26,26 @@ Driver-overhead-dominated environments (DXG/WDDM kernel-launch path, ~50µs+ per
 5. **Async pipeline**: overlap host-side expression generation (mutation/crossover/dedup) with device evaluation using non-blocking pre-submission of the next batch before synchronizing the previous one. Do not rely on graph capture; verify overlap actually hides launch gaps via profiler timings.
 6. **Measured, not assumed**: record kernel time vs launch-gap ratio for every run (profiler sample at minimum). A run whose device utilization is dominated by launch gaps must report `low_gpu_efficiency` as a warning with the measured ratio.
 
+## Memory Safety Rules (field-tested; each caused a real OOM)
+
+These rules exist because each violation killed a real run (host RSS 48GB → system OOM-kill). They are hard requirements, not style preferences.
+
+1. **Never materialize combinatorial grids.** Variant enumeration (window × constant remaps) must not build `itertools.product` lists whose size grows as `len(grid) ** n_params` — 6 window parameters alone produce 15,625 combinations per tree. Cap per-tree variants (default 64); when the theoretical grid exceeds the cap, sample parameter indices randomly with a fixed seed instead of materializing the full Cartesian product.
+2. **Discard batch results immediately after per-batch reduction.** In multi-batch evaluation loops, keep only the reduced rows (e.g. best variant per parent) plus their tensor rows; never accumulate all batch tensors for a final `torch.cat`. Call `gc.collect()` and `torch.cuda.empty_cache()` between batches.
+3. **Trim the result tensor before returning.** If the caller consumes only top-K rows, return `S[top_K_index]`, not the full stacked panel — refinement variants can inflate S to thousands of rows of which ~97% are never used.
+4. **No per-factor host transfers in metric computation.** IC, quantile spreads, and turnover must be computed with batched GPU ops (einsum over the stacked panel) and transferred once; per-factor `.cpu().numpy()` inside a loop serializes GPU→CPU copies and stalls the pipeline.
+5. **Watch for degenerate variants during refinement.** Constant-subtree remapping can produce many near-identical degenerate factors (e.g. `ts_min(cs_rank(const))` families with identical ICIR and ~zero turnover). Deduplicate by a structure signature (expression hash with constants stripped) and filter factors whose cross-sectional variance is near zero or whose |t-stat| < 2 before they enter the elite pool.
+
+## Search Operator Discipline (genetic search v2)
+
+The reference implementation (`scripts/factor_mining/search.py`) uses these operators; new search code must preserve their properties:
+
+- **Mild mutation**: subtree-reset probability 12% (not 40%); window-perturbation (20%) and feature-substitution (15%) micro-operators let elite structures be refined rather than restarted.
+- **Tournament selection** (k=5) instead of pure truncation — preserves selection-pressure gradient.
+- **Composite fitness**: `fitness = ICIR − λ·turnover − μ·corr_penalty` with pre-registered λ=0.25, μ=0.3; corr_penalty is the batch off-diagonal mean |correlation| computed on GPU. Never tune λ/μ after observing results.
+- **Bucketed elite pool** (MAP-Elites-lite): vol / volume / momentum / meanrev buckets, top-8 per bucket, total cap 60 — prevents near-duplicate structures from filling the elite set.
+- **Two-stage search**: GP coarse search → grid refinement of top-40 elites (window/constant remap variants, ≤64 per tree, batched GPU evaluation, best variant per parent kept). Refinement variants are trials: they count toward family-wise trial accounting.
+
 ## Scope
 
 - Operate only on candidates approved by the critic and only through repository-provided commands or APIs.
