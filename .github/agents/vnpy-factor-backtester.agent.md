@@ -57,6 +57,7 @@ If a material input is absent, return `blocked` rather than choosing a favorable
 - Never optimize parameters on validation or final-holdout periods.
 - Never hide failed orders, rejected symbols, missing bars, dependency conflicts, or incomplete runs.
 - Do not edit the upstream vn.py source unless the user explicitly requests a maintained patch. Put adapters and strategies in the user's project.
+- Never emit tool calls as plain text in XML, DSML, card markup, or any `<invoke>` / `<parameter>` style format; every tool call must go through the native tool-call mechanism.
 
 ## Approach
 

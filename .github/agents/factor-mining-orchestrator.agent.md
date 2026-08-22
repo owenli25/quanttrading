@@ -96,6 +96,7 @@ Use conservative defaults only for exploratory hypothesis generation. Never inve
 - Parallelize independent hypotheses only when they share no mutable artifacts and trial accounting remains complete.
 - Do not call `Factor Report` merely to make a blocked pipeline look complete; use the orchestrator's blocked output instead.
 - Do not connect to live gateways, place live orders, or authorize final-holdout access on the user's behalf.
+- Never emit tool calls as plain text in XML, DSML, card markup, or any `<invoke>` / `<parameter>` style format; never ask a specialist agent to do so either; every tool call must go through the native tool-call mechanism.
 
 ## Failure Handling
 
