@@ -12,17 +12,16 @@ Find a tradable cross-sectional signal for liquid, high-beta US common stocks th
 
 ## Default Universe
 
-- Use point-in-time US common stocks and retain delisted securities.
-- Exclude ETFs, ADRs, funds, preferred shares, OTC securities, SPACs, and securities with unresolved type metadata.
-- Require point-in-time float market capitalization of at least USD 2 billion.
-- Require an unadjusted tradable price of at least USD 5.
-- Require 20-day average dollar volume of at least USD 50 million and at least 252 trading days of history.
+- Use the dated S&P 500 ∪ Nasdaq-100 constituent snapshot (universe/latest.csv, versioned by SHA256 ID); do not reconstruct historical index membership. Survivorship bias from current-constituent backtesting is a pre-declared limitation — promoted candidates must pass the wider-universe sensitivity check.
+- Exclude ETFs and ADRs present in the snapshot.
+- Require an unadjusted tradable price of at least USD 5 at signal time.
+- Require 20-day average dollar volume of at least USD 50 million and at least 252 trading days of history within the snapshot.
 - Limit each order to at most 1% of 20-day average dollar volume.
 - Build the high-beta subset from eligible stocks using lagged, robust 20-, 60-, and 120-day beta estimates versus SPY, downside beta, estimation error, and beta stability.
 - Use 60-day beta as the primary horizon. Require beta above 1.2 and select approximately the top 20% after eligibility filters.
-- Neutralize candidate stock scores against industry and log float market capitalization. Report any remaining market beta, size, volatility, and sector exposure.
+- Neutralize candidate stock scores against industry. Report any remaining market beta, size, volatility, and sector exposure.
 
-If point-in-time float shares, delisting history, universe membership, or security-type metadata is unavailable, identify the exact missing input and stop before executable evaluation rather than substituting current data.
+If the universe snapshot, price/volume history, or security-type metadata is unavailable, identify the exact missing input and stop before executable evaluation rather than substituting unversioned data.
 
 ## Hypothesis Families
 
