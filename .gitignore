@@ -1,0 +1,13 @@
+# OS / editor noise
+Thumbs.db
+.DS_Store
+*.swp
+
+# Hermes session temp artifacts
+.hermes-tmp.*/
+.hermes-tmp.*
+
+# Python
+__pycache__/
+*.pyc
+.venv/
