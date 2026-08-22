@@ -1,0 +1,527 @@
+# universe_version=538ced2e9326
+# snapshot_date=2026-08-21
+# captured_at_utc=2026-08-22T06:50:49Z
+# definition=union of current S&P 500 and Nasdaq-100 constituents
+# source_spx=https://en.wikipedia.org/wiki/List_of_S%26P_500_companies
+# source_ndx=https://api.nasdaq.com/api/quote/list-type/nasdaq100
+# count=518
+# note=survivorship bias is a pre-declared system limitation; historical index membership is NOT reconstructed
+ticker,name,sector,industry,index,in_both_indices
+A,Agilent Technologies,Health Care,Life Sciences Tools & Services,SPX,False
+AAPL,Apple Inc.,Information Technology,"Technology Hardware, Storage & Peripherals",SPX,True
+ABBV,AbbVie,Health Care,Biotechnology,SPX,False
+ABNB,Airbnb,Consumer Discretionary,"Hotels, Resorts & Cruise Lines",SPX,True
+ABT,Abbott Laboratories,Health Care,Health Care Equipment,SPX,False
+ACGL,Arch Capital Group,Financials,Property & Casualty Insurance,SPX,False
+ACN,Accenture,Information Technology,IT Consulting & Other Services,SPX,False
+ADBE,Adobe Inc.,Information Technology,Application Software,SPX,True
+ADI,Analog Devices,Information Technology,Semiconductors,SPX,True
+ADM,Archer Daniels Midland,Consumer Staples,Agricultural Products & Services,SPX,False
+ADP,Automatic Data Processing,Industrials,Human Resource & Employment Services,SPX,True
+ADSK,Autodesk,Information Technology,Application Software,SPX,True
+AEE,Ameren,Utilities,Multi-Utilities,SPX,False
+AEP,American Electric Power,Utilities,Electric Utilities,SPX,True
+AES,AES Corporation,Utilities,Independent Power Producers & Energy Traders,SPX,False
+AFL,Aflac,Financials,Life & Health Insurance,SPX,False
+AIG,American International Group,Financials,Multi-line Insurance,SPX,False
+AIZ,Assurant,Financials,Multi-line Insurance,SPX,False
+AJG,Arthur J. Gallagher & Co.,Financials,Insurance Brokers,SPX,False
+AKAM,Akamai Technologies,Information Technology,Internet Services & Infrastructure,SPX,False
+ALAB,"Astera Labs, Inc. Common Stock",,,NDX,False
+ALB,Albemarle Corporation,Materials,Specialty Chemicals,SPX,False
+ALGN,Align Technology,Health Care,Health Care Supplies,SPX,False
+ALL,Allstate,Financials,Property & Casualty Insurance,SPX,False
+ALLE,Allegion,Industrials,Building Products,SPX,False
+ALNY,"Alnylam Pharmaceuticals, Inc. Common Stock",,,NDX,False
+AMAT,Applied Materials,Information Technology,Semiconductor Materials & Equipment,SPX,True
+AMCR,Amcor,Materials,Paper & Plastic Packaging Products & Materials,SPX,False
+AMD,Advanced Micro Devices,Information Technology,Semiconductors,SPX,True
+AME,Ametek,Industrials,Electrical Components & Equipment,SPX,False
+AMGN,Amgen,Health Care,Biotechnology,SPX,True
+AMP,Ameriprise Financial,Financials,Asset Management & Custody Banks,SPX,False
+AMT,American Tower,Real Estate,Telecom Tower REITs,SPX,False
+AMZN,Amazon,Consumer Discretionary,Broadline Retail,SPX,True
+ANET,Arista Networks,Information Technology,Communications Equipment,SPX,False
+AON,Aon plc,Financials,Insurance Brokers,SPX,False
+AOS,A. O. Smith,Industrials,Building Products,SPX,False
+APA,APA Corporation,Energy,Oil & Gas Exploration & Production,SPX,False
+APD,Air Products,Materials,Industrial Gases,SPX,False
+APH,Amphenol,Information Technology,Electronic Components,SPX,False
+APO,Apollo Global Management,Financials,Asset Management & Custody Banks,SPX,False
+APP,AppLovin,Communication Services,Advertising,SPX,True
+APTV,Aptiv,Consumer Discretionary,Automotive Parts & Equipment,SPX,False
+ARE,Alexandria Real Estate Equities,Real Estate,Office REITs,SPX,False
+ARES,Ares Management,Financials,Asset Management & Custody Banks,SPX,False
+ARM,Arm Holdings plc American Depositary Shares,,,NDX,False
+ASML,ASML Holding N.V. New York Registry Shares,,,NDX,False
+ATO,Atmos Energy,Utilities,Gas Utilities,SPX,False
+AVGO,Broadcom,Information Technology,Semiconductors,SPX,True
+AVY,Avery Dennison,Materials,Paper & Plastic Packaging Products & Materials,SPX,False
+AWK,American Water Works,Utilities,Water Utilities,SPX,False
+AXON,Axon Enterprise,Industrials,Aerospace & Defense,SPX,True
+AXP,American Express,Financials,Consumer Finance,SPX,False
+AZO,AutoZone,Consumer Discretionary,Automotive Retail,SPX,False
+BA,Boeing,Industrials,Aerospace & Defense,SPX,False
+BAC,Bank of America,Financials,Diversified Banks,SPX,False
+BALL,Ball Corporation,Materials,"Metal, Glass & Plastic Containers",SPX,False
+BAX,Baxter International,Health Care,Health Care Equipment,SPX,False
+BBY,Best Buy,Consumer Discretionary,Computer & Electronics Retail,SPX,False
+BDX,Becton Dickinson,Health Care,Health Care Equipment,SPX,False
+BEN,Franklin Resources,Financials,Asset Management & Custody Banks,SPX,False
+BF-B,Brown–Forman,Consumer Staples,Distillers & Vintners,SPX,False
+BG,Bunge Global,Consumer Staples,Agricultural Products & Services,SPX,False
+BIIB,Biogen,Health Care,Biotechnology,SPX,False
+BKNG,Booking Holdings,Consumer Discretionary,"Hotels, Resorts & Cruise Lines",SPX,True
+BKR,Baker Hughes,Energy,Oil & Gas Equipment & Services,SPX,True
+BLDR,Builders FirstSource,Industrials,Building Products,SPX,False
+BLK,BlackRock,Financials,Asset Management & Custody Banks,SPX,False
+BMY,Bristol Myers Squibb,Health Care,Pharmaceuticals,SPX,False
+BNY,BNY Mellon,Financials,Asset Management & Custody Banks,SPX,False
+BR,Broadridge Financial Solutions,Industrials,Data Processing & Outsourced Services,SPX,False
+BRK-B,Berkshire Hathaway,Financials,Multi-Sector Holdings,SPX,False
+BRO,Brown & Brown,Financials,Insurance Brokers,SPX,False
+BSX,Boston Scientific,Health Care,Health Care Equipment,SPX,False
+BX,Blackstone Inc.,Financials,Asset Management & Custody Banks,SPX,False
+BXP,"BXP, Inc.",Real Estate,Office REITs,SPX,False
+C,Citigroup,Financials,Diversified Banks,SPX,False
+CAH,Cardinal Health,Health Care,Health Care Distributors,SPX,False
+CARR,Carrier Global,Industrials,Building Products,SPX,False
+CASY,Casey's,Consumer Staples,Food Retail,SPX,False
+CAT,Caterpillar Inc.,Industrials,Construction Machinery & Heavy Transportation Equipment,SPX,False
+CB,Chubb Limited,Financials,Property & Casualty Insurance,SPX,False
+CBOE,Cboe Global Markets,Financials,Financial Exchanges & Data,SPX,False
+CBRE,CBRE Group,Real Estate,Real Estate Services,SPX,False
+CCEP,Coca-Cola Europacific Partners plc Ordinary Shares,,,NDX,False
+CCI,Crown Castle,Real Estate,Telecom Tower REITs,SPX,False
+CCL,Carnival Corporation,Consumer Discretionary,"Hotels, Resorts & Cruise Lines",SPX,False
+CDNS,Cadence Design Systems,Information Technology,Application Software,SPX,True
+CDW,CDW Corporation,Information Technology,Technology Distributors,SPX,False
+CEG,Constellation Energy,Utilities,Electric Utilities,SPX,True
+CF,CF Industries,Materials,Fertilizers & Agricultural Chemicals,SPX,False
+CFG,Citizens Financial Group,Financials,Regional Banks,SPX,False
+CHD,Church & Dwight,Consumer Staples,Household Products,SPX,False
+CHRW,C.H. Robinson,Industrials,Air Freight & Logistics,SPX,False
+CHTR,Charter Communications,Communication Services,Cable & Satellite,SPX,False
+CI,Cigna,Health Care,Health Care Services,SPX,False
+CIEN,Ciena,Information Technology,Communications Equipment,SPX,False
+CINF,Cincinnati Financial,Financials,Property & Casualty Insurance,SPX,False
+CL,Colgate-Palmolive,Consumer Staples,Household Products,SPX,False
+CLX,Clorox,Consumer Staples,Household Products,SPX,False
+CMCSA,Comcast,Communication Services,Cable & Satellite,SPX,True
+CME,CME Group,Financials,Financial Exchanges & Data,SPX,False
+CMG,Chipotle Mexican Grill,Consumer Discretionary,Restaurants,SPX,False
+CMI,Cummins,Industrials,Construction Machinery & Heavy Transportation Equipment,SPX,False
+CMS,CMS Energy,Utilities,Multi-Utilities,SPX,False
+CNC,Centene Corporation,Health Care,Managed Health Care,SPX,False
+CNP,CenterPoint Energy,Utilities,Multi-Utilities,SPX,False
+COF,Capital One,Financials,Consumer Finance,SPX,False
+COHR,Coherent Corp.,Information Technology,Electronic Components,SPX,False
+COIN,Coinbase,Financials,Financial Exchanges & Data,SPX,False
+COO,Cooper Companies (The),Health Care,Health Care Supplies,SPX,False
+COP,ConocoPhillips,Energy,Oil & Gas Exploration & Production,SPX,False
+COR,Cencora,Health Care,Health Care Distributors,SPX,False
+COST,Costco,Consumer Staples,Consumer Staples Merchandise Retail,SPX,True
+CPAY,Corpay,Financials,Transaction & Payment Processing Services,SPX,False
+CPRT,Copart,Industrials,Diversified Support Services,SPX,True
+CPT,Camden Property Trust,Real Estate,Multi-Family Residential REITs,SPX,False
+CRH,CRH plc,Materials,Construction Materials,SPX,False
+CRL,Charles River Laboratories,Health Care,Life Sciences Tools & Services,SPX,False
+CRM,Salesforce,Information Technology,Application Software,SPX,False
+CRWD,CrowdStrike,Information Technology,Systems Software,SPX,True
+CRWV,"CoreWeave, Inc. Class A Common Stock",,,NDX,False
+CSCO,Cisco,Information Technology,Communications Equipment,SPX,True
+CSGP,CoStar Group,Real Estate,Real Estate Services,SPX,False
+CSX,CSX Corporation,Industrials,Rail Transportation,SPX,True
+CTAS,Cintas,Industrials,Diversified Support Services,SPX,True
+CTSH,Cognizant,Information Technology,IT Consulting & Other Services,SPX,False
+CTVA,Corteva,Materials,Fertilizers & Agricultural Chemicals,SPX,False
+CVNA,Carvana,Consumer Discretionary,Automotive Retail,SPX,False
+CVS,CVS Health,Health Care,Health Care Services,SPX,False
+CVX,Chevron Corporation,Energy,Integrated Oil & Gas,SPX,False
+D,Dominion Energy,Utilities,Multi-Utilities,SPX,False
+DAL,Delta Air Lines,Industrials,Passenger Airlines,SPX,False
+DASH,DoorDash,Consumer Discretionary,Specialized Consumer Services,SPX,True
+DD,DuPont,Industrials,Industrial Conglomerates,SPX,False
+DDOG,Datadog,Information Technology,Application Software,SPX,True
+DE,Deere & Company,Industrials,Agricultural & Farm Machinery,SPX,False
+DECK,Deckers Brands,Consumer Discretionary,Footwear,SPX,False
+DELL,Dell Technologies,Information Technology,"Technology Hardware, Storage & Peripherals",SPX,False
+DG,Dollar General,Consumer Staples,Consumer Staples Merchandise Retail,SPX,False
+DGX,Quest Diagnostics,Health Care,Health Care Services,SPX,False
+DHI,D. R. Horton,Consumer Discretionary,Homebuilding,SPX,False
+DHR,Danaher Corporation,Health Care,Life Sciences Tools & Services,SPX,False
+DIS,Walt Disney Company (The),Communication Services,Movies & Entertainment,SPX,False
+DLR,Digital Realty,Real Estate,Data Center REITs,SPX,False
+DLTR,Dollar Tree,Consumer Staples,Consumer Staples Merchandise Retail,SPX,False
+DOC,Healthpeak Properties,Real Estate,Health Care REITs,SPX,False
+DOV,Dover Corporation,Industrials,Industrial Machinery & Supplies & Components,SPX,False
+DOW,Dow Inc.,Materials,Commodity Chemicals,SPX,False
+DPZ,Domino's,Consumer Discretionary,Restaurants,SPX,False
+DRI,Darden Restaurants,Consumer Discretionary,Restaurants,SPX,False
+DTE,DTE Energy,Utilities,Multi-Utilities,SPX,False
+DUK,Duke Energy,Utilities,Electric Utilities,SPX,False
+DVA,DaVita,Health Care,Health Care Services,SPX,False
+DVN,Devon Energy,Energy,Oil & Gas Exploration & Production,SPX,False
+DXCM,Dexcom,Health Care,Health Care Equipment,SPX,True
+EBAY,eBay Inc.,Consumer Discretionary,Broadline Retail,SPX,False
+ECHO,EchoStar,Communication Services,Wireless Telecommunication Services,SPX,False
+ECL,Ecolab,Materials,Specialty Chemicals,SPX,False
+ED,Consolidated Edison,Utilities,Multi-Utilities,SPX,False
+EFX,Equifax,Industrials,Research & Consulting Services,SPX,False
+EG,Everest Group,Financials,Reinsurance,SPX,False
+EIX,Edison International,Utilities,Electric Utilities,SPX,False
+EL,Estée Lauder Companies (The),Consumer Staples,Personal Care Products,SPX,False
+ELV,Elevance Health,Health Care,Managed Health Care,SPX,False
+EME,Emcor,Industrials,Construction & Engineering,SPX,False
+EMR,Emerson Electric,Industrials,Electrical Components & Equipment,SPX,False
+EOG,EOG Resources,Energy,Oil & Gas Exploration & Production,SPX,False
+EQIX,Equinix,Real Estate,Data Center REITs,SPX,False
+EQT,EQT Corporation,Energy,Oil & Gas Exploration & Production,SPX,False
+ERIE,Erie Indemnity,Financials,Insurance Brokers,SPX,False
+ES,Eversource Energy,Utilities,Electric Utilities,SPX,False
+ESS,Essex Property Trust,Real Estate,Multi-Family Residential REITs,SPX,False
+ETN,Eaton Corporation,Industrials,Electrical Components & Equipment,SPX,False
+ETR,Entergy,Utilities,Electric Utilities,SPX,False
+EVRG,Evergy,Utilities,Electric Utilities,SPX,False
+EW,Edwards Lifesciences,Health Care,Health Care Equipment,SPX,False
+EXC,Exelon,Utilities,Electric Utilities,SPX,True
+EXE,Expand Energy,Energy,Oil & Gas Exploration & Production,SPX,False
+EXPD,Expeditors International,Industrials,Air Freight & Logistics,SPX,False
+EXPE,Expedia Group,Consumer Discretionary,"Hotels, Resorts & Cruise Lines",SPX,False
+EXR,Extra Space Storage,Real Estate,Self-Storage REITs,SPX,False
+F,Ford Motor Company,Consumer Discretionary,Automobile Manufacturers,SPX,False
+FANG,Diamondback Energy,Energy,Oil & Gas Exploration & Production,SPX,True
+FAST,Fastenal,Industrials,Trading Companies & Distributors,SPX,True
+FCX,Freeport-McMoRan,Materials,Copper,SPX,False
+FDS,FactSet,Financials,Financial Exchanges & Data,SPX,False
+FDX,FedEx,Industrials,Air Freight & Logistics,SPX,False
+FDXF,FedEx Freight,Industrials,Cargo Ground Transportation,SPX,False
+FE,FirstEnergy,Utilities,Electric Utilities,SPX,False
+FER,Ferrovial N.V. Ordinary Shares,,,NDX,False
+FERG,Ferguson Enterprises,Industrials,Building Products,SPX,False
+FFIV,"F5, Inc.",Information Technology,Communications Equipment,SPX,False
+FICO,Fair Isaac,Information Technology,Application Software,SPX,False
+FIS,Fidelity National Information Services,Financials,Transaction & Payment Processing Services,SPX,False
+FISV,Fiserv,Financials,Transaction & Payment Processing Services,SPX,False
+FITB,Fifth Third Bancorp,Financials,Regional Banks,SPX,False
+FIX,Comfort Systems USA,Industrials,Construction & Engineering,SPX,False
+FLEX,Flex Ltd.,Information Technology,Electronic Manufacturing Services,SPX,False
+FOX,Fox Corporation (Class B),Communication Services,Broadcasting,SPX,False
+FOXA,Fox Corporation (Class A),Communication Services,Broadcasting,SPX,False
+FRT,Federal Realty Investment Trust,Real Estate,Retail REITs,SPX,False
+FSLR,First Solar,Information Technology,Semiconductors,SPX,False
+FTNT,Fortinet,Information Technology,Systems Software,SPX,True
+FTV,Fortive,Industrials,Industrial Machinery & Supplies & Components,SPX,False
+GD,General Dynamics,Industrials,Aerospace & Defense,SPX,False
+GDDY,GoDaddy,Information Technology,Internet Services & Infrastructure,SPX,False
+GE,GE Aerospace,Industrials,Aerospace & Defense,SPX,False
+GEHC,GE HealthCare,Health Care,Health Care Equipment,SPX,True
+GEN,Gen Digital,Information Technology,Systems Software,SPX,False
+GEV,GE Vernova,Industrials,Heavy Electrical Equipment,SPX,False
+GILD,Gilead Sciences,Health Care,Biotechnology,SPX,True
+GIS,General Mills,Consumer Staples,Packaged Foods & Meats,SPX,False
+GL,Globe Life,Financials,Life & Health Insurance,SPX,False
+GLW,Corning Inc.,Information Technology,Electronic Components,SPX,False
+GM,General Motors,Consumer Discretionary,Automobile Manufacturers,SPX,False
+GNRC,Generac,Industrials,Heavy Electrical Equipment,SPX,False
+GOOG,Alphabet Inc. (Class C),Communication Services,Interactive Media & Services,SPX,True
+GOOGL,Alphabet Inc. (Class A),Communication Services,Interactive Media & Services,SPX,True
+GPC,Genuine Parts Company,Consumer Discretionary,Distributors,SPX,False
+GPN,Global Payments,Financials,Transaction & Payment Processing Services,SPX,False
+GRMN,Garmin,Consumer Discretionary,Consumer Electronics,SPX,False
+GS,Goldman Sachs,Financials,Investment Banking & Brokerage,SPX,False
+GWW,W. W. Grainger,Industrials,Industrial Machinery & Supplies & Components,SPX,False
+HAL,Halliburton,Energy,Oil & Gas Equipment & Services,SPX,False
+HAS,Hasbro,Consumer Discretionary,Leisure Products,SPX,False
+HBAN,Huntington Bancshares,Financials,Regional Banks,SPX,False
+HCA,HCA Healthcare,Health Care,Health Care Facilities,SPX,False
+HD,Home Depot (The),Consumer Discretionary,Home Improvement Retail,SPX,False
+HIG,Hartford (The),Financials,Property & Casualty Insurance,SPX,False
+HII,Huntington Ingalls Industries,Industrials,Aerospace & Defense,SPX,False
+HLT,Hilton Worldwide,Consumer Discretionary,"Hotels, Resorts & Cruise Lines",SPX,False
+HON,Honeywell Technologies,Industrials,Industrial Conglomerates,SPX,True
+HONA,Honeywell Aerospace,Industrials,Aerospace & Defense,SPX,True
+HOOD,Robinhood Markets,Financials,Investment Banking & Brokerage,SPX,False
+HPE,Hewlett Packard Enterprise,Information Technology,"Technology Hardware, Storage & Peripherals",SPX,False
+HPQ,HP Inc.,Information Technology,"Technology Hardware, Storage & Peripherals",SPX,False
+HRL,Hormel Foods,Consumer Staples,Packaged Foods & Meats,SPX,False
+HSIC,Henry Schein,Health Care,Health Care Distributors,SPX,False
+HST,Host Hotels & Resorts,Real Estate,Hotel & Resort REITs,SPX,False
+HSY,Hershey Company (The),Consumer Staples,Packaged Foods & Meats,SPX,False
+HUBB,Hubbell Incorporated,Industrials,Industrial Machinery & Supplies & Components,SPX,False
+HUM,Humana,Health Care,Managed Health Care,SPX,False
+HWM,Howmet Aerospace,Industrials,Aerospace & Defense,SPX,False
+IBKR,Interactive Brokers,Financials,Investment Banking & Brokerage,SPX,False
+IBM,IBM,Information Technology,IT Consulting & Other Services,SPX,False
+ICE,Intercontinental Exchange,Financials,Financial Exchanges & Data,SPX,False
+IDXX,Idexx Laboratories,Health Care,Health Care Equipment,SPX,True
+IEX,IDEX Corporation,Industrials,Industrial Machinery & Supplies & Components,SPX,False
+IFF,International Flavors & Fragrances,Materials,Specialty Chemicals,SPX,False
+INCY,Incyte,Health Care,Biotechnology,SPX,False
+INTC,Intel,Information Technology,Semiconductors,SPX,True
+INTU,Intuit,Information Technology,Application Software,SPX,True
+INVH,Invitation Homes,Real Estate,Single-Family Residential REITs,SPX,False
+IP,International Paper,Materials,Paper & Plastic Packaging Products & Materials,SPX,False
+IQV,IQVIA,Health Care,Life Sciences Tools & Services,SPX,False
+IR,Ingersoll Rand,Industrials,Industrial Machinery & Supplies & Components,SPX,False
+IRM,Iron Mountain,Real Estate,Other Specialized REITs,SPX,False
+ISRG,Intuitive Surgical,Health Care,Health Care Equipment,SPX,True
+IT,Gartner,Information Technology,IT Consulting & Other Services,SPX,False
+ITW,Illinois Tool Works,Industrials,Industrial Machinery & Supplies & Components,SPX,False
+IVZ,Invesco,Financials,Asset Management & Custody Banks,SPX,False
+J,Jacobs Solutions,Industrials,Construction & Engineering,SPX,False
+JBHT,J.B. Hunt,Industrials,Cargo Ground Transportation,SPX,False
+JBL,Jabil,Information Technology,Electronic Manufacturing Services,SPX,False
+JCI,Johnson Controls,Industrials,Building Products,SPX,False
+JKHY,Jack Henry & Associates,Financials,Transaction & Payment Processing Services,SPX,False
+JNJ,Johnson & Johnson,Health Care,Pharmaceuticals,SPX,False
+JPM,JPMorgan Chase,Financials,Diversified Banks,SPX,False
+KDP,Keurig Dr Pepper,Consumer Staples,Soft Drinks & Non-alcoholic Beverages,SPX,True
+KEY,KeyCorp,Financials,Regional Banks,SPX,False
+KEYS,Keysight Technologies,Information Technology,Electronic Equipment & Instruments,SPX,False
+KHC,Kraft Heinz,Consumer Staples,Packaged Foods & Meats,SPX,True
+KIM,Kimco Realty,Real Estate,Retail REITs,SPX,False
+KKR,KKR & Co.,Financials,Asset Management & Custody Banks,SPX,False
+KLAC,KLA Corporation,Information Technology,Semiconductor Materials & Equipment,SPX,True
+KMB,Kimberly-Clark,Consumer Staples,Household Products,SPX,False
+KMI,Kinder Morgan,Energy,Oil & Gas Storage & Transportation,SPX,False
+KO,Coca-Cola Company (The),Consumer Staples,Soft Drinks & Non-alcoholic Beverages,SPX,False
+KR,Kroger,Consumer Staples,Food Retail,SPX,False
+KVUE,Kenvue,Consumer Staples,Personal Care Products,SPX,False
+L,Loews Corporation,Financials,Multi-line Insurance,SPX,False
+LDOS,Leidos,Industrials,Diversified Support Services,SPX,False
+LEN,Lennar,Consumer Discretionary,Homebuilding,SPX,False
+LH,Labcorp,Health Care,Health Care Services,SPX,False
+LHX,L3Harris,Industrials,Aerospace & Defense,SPX,False
+LII,Lennox International,Industrials,Building Products,SPX,False
+LIN,Linde plc,Materials,Industrial Gases,SPX,True
+LITE,Lumentum,Information Technology,Communications Equipment,SPX,True
+LLY,Lilly (Eli),Health Care,Pharmaceuticals,SPX,False
+LMT,Lockheed Martin,Industrials,Aerospace & Defense,SPX,False
+LNT,Alliant Energy,Utilities,Electric Utilities,SPX,False
+LOW,Lowe's,Consumer Discretionary,Home Improvement Retail,SPX,False
+LRCX,Lam Research,Information Technology,Semiconductor Materials & Equipment,SPX,True
+LULU,Lululemon Athletica,Consumer Discretionary,"Apparel, Accessories & Luxury Goods",SPX,False
+LUV,Southwest Airlines,Industrials,Passenger Airlines,SPX,False
+LVS,Las Vegas Sands,Consumer Discretionary,Casinos & Gaming,SPX,False
+LYB,LyondellBasell,Materials,Specialty Chemicals,SPX,False
+LYV,Live Nation Entertainment,Communication Services,Movies & Entertainment,SPX,False
+MA,Mastercard,Financials,Transaction & Payment Processing Services,SPX,False
+MAA,Mid-America Apartment Communities,Real Estate,Multi-Family Residential REITs,SPX,False
+MAR,Marriott International,Consumer Discretionary,"Hotels, Resorts & Cruise Lines",SPX,True
+MAS,Masco,Industrials,Building Products,SPX,False
+MCD,McDonald's,Consumer Discretionary,Restaurants,SPX,False
+MCHP,Microchip Technology,Information Technology,Semiconductors,SPX,True
+MCK,McKesson Corporation,Health Care,Health Care Distributors,SPX,False
+MCO,Moody's Corporation,Financials,Financial Exchanges & Data,SPX,False
+MDLZ,Mondelez International,Consumer Staples,Packaged Foods & Meats,SPX,True
+MDT,Medtronic,Health Care,Health Care Equipment,SPX,False
+MELI,"MercadoLibre, Inc. Common Stock",,,NDX,False
+MET,MetLife,Financials,Life & Health Insurance,SPX,False
+META,Meta Platforms,Communication Services,Interactive Media & Services,SPX,True
+MGM,MGM Resorts,Consumer Discretionary,Casinos & Gaming,SPX,False
+MKC,McCormick & Company,Consumer Staples,Packaged Foods & Meats,SPX,False
+MLM,Martin Marietta Materials,Materials,Construction Materials,SPX,False
+MMM,3M,Industrials,Industrial Conglomerates,SPX,False
+MNST,Monster Beverage,Consumer Staples,Soft Drinks & Non-alcoholic Beverages,SPX,True
+MO,Altria,Consumer Staples,Tobacco,SPX,False
+MOS,Mosaic Company (The),Materials,Fertilizers & Agricultural Chemicals,SPX,False
+MPC,Marathon Petroleum,Energy,Oil & Gas Refining & Marketing,SPX,False
+MPWR,Monolithic Power Systems,Information Technology,Semiconductors,SPX,True
+MRK,Merck & Co.,Health Care,Pharmaceuticals,SPX,False
+MRNA,Moderna,Health Care,Biotechnology,SPX,False
+MRSH,Marsh McLennan,Financials,Insurance Brokers,SPX,False
+MRVL,Marvell Technology,Information Technology,Semiconductors,SPX,True
+MS,Morgan Stanley,Financials,Investment Banking & Brokerage,SPX,False
+MSCI,MSCI,Financials,Financial Exchanges & Data,SPX,False
+MSFT,Microsoft,Information Technology,Systems Software,SPX,True
+MSI,Motorola Solutions,Information Technology,Communications Equipment,SPX,False
+MSTR,Strategy Inc Common Stock Class A,,,NDX,False
+MTB,M&T Bank,Financials,Regional Banks,SPX,False
+MTD,Mettler Toledo,Health Care,Life Sciences Tools & Services,SPX,False
+MU,Micron Technology,Information Technology,Semiconductors,SPX,True
+NBIS,Nebius Group N.V. Class A Ordinary Shares,,,NDX,False
+NCLH,Norwegian Cruise Line Holdings,Consumer Discretionary,"Hotels, Resorts & Cruise Lines",SPX,False
+NDAQ,"Nasdaq, Inc.",Financials,Financial Exchanges & Data,SPX,False
+NDSN,Nordson Corporation,Industrials,Industrial Machinery & Supplies & Components,SPX,False
+NEE,NextEra Energy,Utilities,Multi-Utilities,SPX,False
+NEM,Newmont,Materials,Gold,SPX,False
+NFLX,Netflix,Communication Services,Movies & Entertainment,SPX,True
+NI,NiSource,Utilities,Multi-Utilities,SPX,False
+NKE,"Nike, Inc.",Consumer Discretionary,"Apparel, Accessories & Luxury Goods",SPX,False
+NOC,Northrop Grumman,Industrials,Aerospace & Defense,SPX,False
+NOW,ServiceNow,Information Technology,Systems Software,SPX,False
+NRG,NRG Energy,Utilities,Independent Power Producers & Energy Traders,SPX,False
+NSC,Norfolk Southern,Industrials,Rail Transportation,SPX,False
+NTAP,NetApp,Information Technology,"Technology Hardware, Storage & Peripherals",SPX,False
+NTRS,Northern Trust,Financials,Asset Management & Custody Banks,SPX,False
+NUE,Nucor,Materials,Steel,SPX,False
+NVDA,Nvidia,Information Technology,Semiconductors,SPX,True
+NVR,"NVR, Inc.",Consumer Discretionary,Homebuilding,SPX,False
+NWS,News Corp (Class B),Communication Services,Publishing,SPX,False
+NWSA,News Corp (Class A),Communication Services,Publishing,SPX,False
+NXPI,NXP Semiconductors,Information Technology,Semiconductors,SPX,True
+O,Realty Income,Real Estate,Retail REITs,SPX,False
+ODFL,Old Dominion,Industrials,Cargo Ground Transportation,SPX,True
+OKE,Oneok,Energy,Oil & Gas Storage & Transportation,SPX,False
+OMC,Omnicom Group,Communication Services,Advertising,SPX,False
+ON,ON Semiconductor,Information Technology,Semiconductors,SPX,False
+ORCL,Oracle Corporation,Information Technology,Application Software,SPX,False
+ORLY,O'Reilly Automotive,Consumer Discretionary,Automotive Retail,SPX,True
+OTIS,Otis Worldwide,Industrials,Industrial Machinery & Supplies & Components,SPX,False
+OXY,Occidental Petroleum,Energy,Oil & Gas Exploration & Production,SPX,False
+PANW,Palo Alto Networks,Information Technology,Systems Software,SPX,True
+PAYX,Paychex,Industrials,Human Resource & Employment Services,SPX,True
+PCAR,Paccar,Industrials,Construction Machinery & Heavy Transportation Equipment,SPX,True
+PCG,PG&E Corporation,Utilities,Multi-Utilities,SPX,False
+PDD,PDD Holdings Inc. American Depositary Shares,,,NDX,False
+PEG,Public Service Enterprise Group,Utilities,Electric Utilities,SPX,False
+PEP,PepsiCo,Consumer Staples,Soft Drinks & Non-alcoholic Beverages,SPX,True
+PFE,Pfizer,Health Care,Pharmaceuticals,SPX,False
+PFG,Principal Financial Group,Financials,Life & Health Insurance,SPX,False
+PG,Procter & Gamble,Consumer Staples,Personal Care Products,SPX,False
+PGR,Progressive Corporation,Financials,Property & Casualty Insurance,SPX,False
+PH,Parker Hannifin,Industrials,Industrial Machinery & Supplies & Components,SPX,False
+PHM,PulteGroup,Consumer Discretionary,Homebuilding,SPX,False
+PKG,Packaging Corporation of America,Materials,Paper & Plastic Packaging Products & Materials,SPX,False
+PLD,Prologis,Real Estate,Industrial REITs,SPX,False
+PLTR,Palantir Technologies,Information Technology,Application Software,SPX,True
+PM,Philip Morris International,Consumer Staples,Tobacco,SPX,False
+PNC,PNC Financial Services,Financials,Diversified Banks,SPX,False
+PNR,Pentair,Industrials,Industrial Machinery & Supplies & Components,SPX,False
+PNW,Pinnacle West Capital,Utilities,Multi-Utilities,SPX,False
+PODD,Insulet Corporation,Health Care,Health Care Equipment,SPX,False
+PPG,PPG Industries,Materials,Specialty Chemicals,SPX,False
+PPL,PPL Corporation,Utilities,Electric Utilities,SPX,False
+PRU,Prudential Financial,Financials,Life & Health Insurance,SPX,False
+PSA,Public Storage,Real Estate,Self-Storage REITs,SPX,False
+PSKY,Paramount Skydance Corporation,Communication Services,Movies & Entertainment,SPX,False
+PSX,Phillips 66,Energy,Oil & Gas Refining & Marketing,SPX,False
+PTC,PTC Inc.,Information Technology,Application Software,SPX,False
+PWR,Quanta Services,Industrials,Construction & Engineering,SPX,False
+PYPL,PayPal,Financials,Transaction & Payment Processing Services,SPX,True
+Q,Qnity Electronics,Information Technology,Semiconductor Materials & Equipment,SPX,False
+QCOM,Qualcomm,Information Technology,Semiconductors,SPX,True
+RCL,Royal Caribbean Group,Consumer Discretionary,"Hotels, Resorts & Cruise Lines",SPX,False
+RDDT,Reddit,Communication Services,Interactive Media & Services,SPX,False
+REG,Regency Centers,Real Estate,Retail REITs,SPX,False
+REGN,Regeneron Pharmaceuticals,Health Care,Biotechnology,SPX,True
+RF,Regions Financial Corporation,Financials,Regional Banks,SPX,False
+RJF,Raymond James Financial,Financials,Investment Banking & Brokerage,SPX,False
+RKLB,Rocket Lab Corporation Common Stock,,,NDX,False
+RL,Ralph Lauren Corporation,Consumer Discretionary,"Apparel, Accessories & Luxury Goods",SPX,False
+RMD,ResMed|,Health Care,Health Care Equipment,SPX,False
+ROK,Rockwell Automation,Industrials,Electrical Components & Equipment,SPX,False
+ROL,"Rollins, Inc.",Industrials,Environmental & Facilities Services,SPX,False
+ROP,Roper Technologies,Information Technology,Electronic Equipment & Instruments,SPX,True
+ROST,Ross Stores,Consumer Discretionary,Apparel Retail,SPX,True
+RSG,Republic Services,Industrials,Environmental & Facilities Services,SPX,False
+RTX,RTX Corporation,Industrials,Aerospace & Defense,SPX,False
+RVTY,Revvity,Health Care,Health Care Equipment,SPX,False
+SBAC,SBA Communications,Real Estate,Telecom Tower REITs,SPX,False
+SBUX,Starbucks,Consumer Discretionary,Restaurants,SPX,True
+SCHW,Charles Schwab Corporation,Financials,Investment Banking & Brokerage,SPX,False
+SHOP,Shopify Inc. Class A Subordinate Voting Shares,,,NDX,False
+SHW,Sherwin-Williams,Materials,Specialty Chemicals,SPX,False
+SJM,J.M. Smucker Company (The),Consumer Staples,Packaged Foods & Meats,SPX,False
+SLB,Schlumberger,Energy,Oil & Gas Equipment & Services,SPX,False
+SMCI,Supermicro,Information Technology,"Technology Hardware, Storage & Peripherals",SPX,False
+SNA,Snap-on,Industrials,Industrial Machinery & Supplies & Components,SPX,False
+SNDK,Sandisk,Information Technology,"Technology Hardware, Storage & Peripherals",SPX,True
+SNPS,Synopsys,Information Technology,Application Software,SPX,True
+SO,Southern Company,Utilities,Electric Utilities,SPX,False
+SOLV,Solventum,Health Care,Health Care Technology,SPX,False
+SPCX,Space Exploration Technologies Corp. Class A Common Stock,,,NDX,False
+SPG,Simon Property Group,Real Estate,Retail REITs,SPX,False
+SPGI,S&P Global,Financials,Financial Exchanges & Data,SPX,False
+SRE,Sempra,Utilities,Multi-Utilities,SPX,False
+STE,Steris,Health Care,Health Care Equipment,SPX,False
+STLD,Steel Dynamics,Materials,Steel,SPX,False
+STT,State Street Corporation,Financials,Asset Management & Custody Banks,SPX,False
+STX,Seagate Technology,Information Technology,"Technology Hardware, Storage & Peripherals",SPX,True
+STZ,Constellation Brands,Consumer Staples,Distillers & Vintners,SPX,False
+SW,Smurfit Westrock,Materials,Paper & Plastic Packaging Products & Materials,SPX,False
+SWK,Stanley Black & Decker,Industrials,Industrial Machinery & Supplies & Components,SPX,False
+SWKS,Skyworks Solutions,Information Technology,Semiconductors,SPX,False
+SYF,Synchrony Financial,Financials,Consumer Finance,SPX,False
+SYK,Stryker Corporation,Health Care,Health Care Equipment,SPX,False
+SYY,Sysco,Consumer Staples,Food Distributors,SPX,False
+T,AT&T,Communication Services,Integrated Telecommunication Services,SPX,False
+TAP,Molson Coors Beverage Company,Consumer Staples,Brewers,SPX,False
+TDG,TransDigm Group,Industrials,Aerospace & Defense,SPX,False
+TDY,Teledyne Technologies,Information Technology,Electronic Equipment & Instruments,SPX,False
+TECH,Bio-Techne,Health Care,Life Sciences Tools & Services,SPX,False
+TEL,TE Connectivity,Information Technology,Electronic Manufacturing Services,SPX,False
+TER,Teradyne,Information Technology,Semiconductor Materials & Equipment,SPX,True
+TFC,Truist Financial,Financials,Diversified Banks,SPX,False
+TGT,Target Corporation,Consumer Staples,Consumer Staples Merchandise Retail,SPX,False
+TJX,TJX Companies,Consumer Discretionary,Apparel Retail,SPX,False
+TKO,TKO Group Holdings,Communication Services,Movies & Entertainment,SPX,False
+TMO,Thermo Fisher Scientific,Health Care,Life Sciences Tools & Services,SPX,False
+TMUS,T-Mobile US,Communication Services,Wireless Telecommunication Services,SPX,True
+TPL,Texas Pacific Land Corporation,Energy,Oil & Gas Exploration & Production,SPX,False
+TPR,"Tapestry, Inc.",Consumer Discretionary,"Apparel, Accessories & Luxury Goods",SPX,False
+TRGP,Targa Resources,Energy,Oil & Gas Storage & Transportation,SPX,False
+TRI,Thomson Reuters Corporation Common Shares,,,NDX,False
+TRMB,Trimble Inc.,Information Technology,Application Software,SPX,False
+TROW,T. Rowe Price,Financials,Asset Management & Custody Banks,SPX,False
+TRV,Travelers Companies (The),Financials,Property & Casualty Insurance,SPX,False
+TSCO,Tractor Supply,Consumer Discretionary,Other Specialty Retail,SPX,False
+TSLA,"Tesla, Inc.",Consumer Discretionary,Automobile Manufacturers,SPX,True
+TSN,Tyson Foods,Consumer Staples,Packaged Foods & Meats,SPX,False
+TT,Trane Technologies,Industrials,Building Products,SPX,False
+TTD,Trade Desk (The),Communication Services,Advertising,SPX,False
+TTWO,Take-Two Interactive,Communication Services,Interactive Home Entertainment,SPX,True
+TXN,Texas Instruments,Information Technology,Semiconductors,SPX,True
+TXT,Textron,Industrials,Aerospace & Defense,SPX,False
+TYL,Tyler Technologies,Information Technology,Application Software,SPX,False
+UAL,United Airlines Holdings,Industrials,Passenger Airlines,SPX,False
+UBER,Uber,Industrials,Passenger Ground Transportation,SPX,False
+UDR,"UDR, Inc.",Real Estate,Multi-Family Residential REITs,SPX,False
+UHS,Universal Health Services,Health Care,Health Care Facilities,SPX,False
+ULTA,Ulta Beauty,Consumer Discretionary,Other Specialty Retail,SPX,False
+UNH,UnitedHealth Group,Health Care,Managed Health Care,SPX,False
+UNP,Union Pacific Corporation,Industrials,Rail Transportation,SPX,False
+UPS,United Parcel Service,Industrials,Air Freight & Logistics,SPX,False
+URI,United Rentals,Industrials,Trading Companies & Distributors,SPX,False
+USB,U.S. Bancorp,Financials,Diversified Banks,SPX,False
+V,Visa Inc.,Financials,Transaction & Payment Processing Services,SPX,False
+VEEV,Veeva Systems,Health Care,Health Care Technology,SPX,False
+VICI,Vici Properties,Real Estate,Hotel & Resort REITs,SPX,False
+VLO,Valero Energy,Energy,Oil & Gas Refining & Marketing,SPX,False
+VLTO,Veralto,Industrials,Environmental & Facilities Services,SPX,False
+VMC,Vulcan Materials Company,Materials,Construction Materials,SPX,False
+VMRK,Vivmark Residential,Real Estate,Multi-Family Residential REITs,SPX,False
+VRSK,Verisk Analytics,Industrials,Research & Consulting Services,SPX,False
+VRSN,Verisign,Information Technology,Internet Services & Infrastructure,SPX,False
+VRT,Vertiv,Industrials,Electrical Components & Equipment,SPX,False
+VRTX,Vertex Pharmaceuticals,Health Care,Biotechnology,SPX,True
+VST,Vistra Corp.,Utilities,Electric Utilities,SPX,False
+VTR,Ventas,Real Estate,Health Care REITs,SPX,False
+VTRS,Viatris,Health Care,Pharmaceuticals,SPX,False
+VZ,Verizon,Communication Services,Integrated Telecommunication Services,SPX,False
+WAB,Wabtec,Industrials,Construction Machinery & Heavy Transportation Equipment,SPX,False
+WAT,Waters Corporation,Health Care,Life Sciences Tools & Services,SPX,False
+WBD,Warner Bros. Discovery,Communication Services,Broadcasting,SPX,True
+WDAY,"Workday, Inc.",Information Technology,Application Software,SPX,True
+WDC,Western Digital,Information Technology,"Technology Hardware, Storage & Peripherals",SPX,True
+WEC,WEC Energy Group,Utilities,Electric Utilities,SPX,False
+WELL,Welltower,Real Estate,Health Care REITs,SPX,False
+WFC,Wells Fargo,Financials,Diversified Banks,SPX,False
+WM,Waste Management,Industrials,Environmental & Facilities Services,SPX,False
+WMB,Williams Companies,Energy,Oil & Gas Storage & Transportation,SPX,False
+WMT,Walmart,Consumer Staples,Consumer Staples Merchandise Retail,SPX,True
+WRB,W. R. Berkley Corporation,Financials,Property & Casualty Insurance,SPX,False
+WSM,"Williams-Sonoma, Inc.",Consumer Discretionary,Homefurnishing Retail,SPX,False
+WST,West Pharmaceutical Services,Health Care,Health Care Supplies,SPX,False
+WTW,Willis Towers Watson,Financials,Insurance Brokers,SPX,False
+WY,Weyerhaeuser,Real Estate,Timber REITs,SPX,False
+WYNN,Wynn Resorts,Consumer Discretionary,Casinos & Gaming,SPX,False
+XEL,Xcel Energy,Utilities,Multi-Utilities,SPX,True
+XOM,ExxonMobil,Energy,Integrated Oil & Gas,SPX,False
+XYL,Xylem Inc.,Industrials,Industrial Machinery & Supplies & Components,SPX,False
+XYZ,"Block, Inc.",Financials,Transaction & Payment Processing Services,SPX,False
+YUM,Yum! Brands,Consumer Discretionary,Restaurants,SPX,False
+ZBH,Zimmer Biomet,Health Care,Health Care Equipment,SPX,False
+ZBRA,Zebra Technologies,Information Technology,Electronic Equipment & Instruments,SPX,False
+ZTS,Zoetis,Health Care,Pharmaceuticals,SPX,False

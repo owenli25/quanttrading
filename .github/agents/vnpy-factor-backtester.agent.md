@@ -54,6 +54,7 @@ If a material input is absent, return `blocked` rather than choosing a favorable
 - Never connect to a live trading gateway or submit live orders while performing a backtest.
 - Never use an undated or unversioned constituent snapshot for a historical universe, and never silently drop missing or suspended symbols from the configured snapshot.
 - Never fabricate data or substitute a different backtesting engine while labeling the result as vn.py.
+- When asked for a cross-engine verification artifact, implement the second engine independently in the project; clearly label its output `cross_check`, never present it as a vn.py result, and never let it replace or override the authoritative vn.py run.
 - Never optimize parameters on validation or final-holdout periods.
 - Never hide failed orders, rejected symbols, missing bars, dependency conflicts, or incomplete runs.
 - Do not edit the upstream vn.py source unless the user explicitly requests a maintained patch. Put adapters and strategies in the user's project.
