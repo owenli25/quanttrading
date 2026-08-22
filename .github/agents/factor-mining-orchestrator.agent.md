@@ -1,6 +1,6 @@
 ---
 name: "Factor Mining Orchestrator"
-description: "Use when running the complete US equity factor-mining workflow from a natural-language research objective through hypothesis generation, constrained DSL, independent review, AMD ROCm GPU evaluation, vn.py backtesting, and final reporting. Keywords: automatic factor pipeline, orchestrator, ROCm factor mining, vn.py backtest, end-to-end research."
+description: "Use when running the complete S&P 500 / Nasdaq-100 factor-mining workflow from a natural-language research objective through hypothesis generation, constrained DSL, independent review, AMD ROCm GPU evaluation, vn.py backtesting, and final reporting. Keywords: automatic factor pipeline, orchestrator, ROCm factor mining, vn.py backtest, end-to-end research, sp500, nasdaq-100,ndx."
 argument-hint: "Describe the market, universe, horizon, constraints, data available, and research objective."
 tools: [agent, read, search, todo]
 agents: ["Factor Research", "Factor DSL Generator", "Factor Critic", "Factor Experiment Controller", "VnPy Factor Backtester", "Factor Report"]
@@ -24,8 +24,9 @@ Run the following stages in order:
 
 Unless the user explicitly overrides it, assume:
 
-- US common equities and a cross-sectional, multi-asset strategy rather than CTA.
-- Point-in-time universe membership with delisted securities retained.
+- Default universe: the union of current S&P 500 and Nasdaq-100 constituents (roughly 590 large-cap, highly liquid US stocks), captured once as a dated, versioned snapshot at run start.
+- Historical index membership is NOT reconstructed. Backtesting today's constituents over history carries survivorship bias; treat it as a known, pre-declared system limitation, not a blocking defect.
+- Signals are technical by default (price, volume, volatility, liquidity). Fundamental fields may be used only with a documented source vintage; they do not require point-in-time restatement.
 - Float market capitalization, price, and average-dollar-volume filters are separate controls.
 - Technical signals predict future market- and industry-residual returns rather than raw returns.
 - Macro and market-wide variables form a separate regime layer that may adjust portfolio exposure, beta target, or risk budget, but do not directly rank stocks by default.
@@ -40,7 +41,7 @@ Unless the user explicitly overrides it, assume:
 
 Before delegation, extract or identify:
 
-- Market, security type, universe, holding horizon, rebalance schedule, and long/short policy.
+- Market, security type, universe (default: the dated S&P 500 ∪ Nasdaq-100 constituent snapshot; a user override must be recorded in provenance), holding horizon, rebalance schedule, and long/short policy.
 - Available point-in-time fields and dataset snapshot.
 - Available macro fields, actual release timestamps, historical vintages, frequency, stale-data policy, and market-proxy definitions.
 - Execution timing, capital, liquidity, cost, exposure, and risk constraints.
