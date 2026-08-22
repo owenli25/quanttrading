@@ -1,6 +1,6 @@
 ---
 name: "Research Long-Term Strategy"
-description: "Research an auditable 1-12 month US equity multi-factor strategy using point-in-time fundamentals, macro regimes, ROCm evaluation, and vn.py backtesting."
+description: "Research an auditable 1-12 month US equity multi-factor strategy on the S&P 500 / Nasdaq-100 snapshot using technical factors, macro regimes, ROCm evaluation, and vn.py backtesting."
 argument-hint: "Optional overrides: capital, dates, holding horizon, universe, benchmark, data paths, factor families, costs, and risk limits."
 agent: "Factor Mining Orchestrator"
 ---
@@ -12,37 +12,36 @@ Find a capacity-aware cross-sectional strategy that predicts market- and industr
 
 ## Default Universe
 
-- Use point-in-time US common stocks and retain delisted securities.
-- Exclude ETFs, ADRs, funds, preferred shares, OTC securities, SPACs, and securities with unresolved type metadata.
-- Require point-in-time float market capitalization of at least USD 2 billion.
-- Require an unadjusted tradable price of at least USD 5.
-- Require 60-day average dollar volume of at least USD 20 million and at least 504 trading days of price history.
-- Use historical sector classifications, shares outstanding, float shares, corporate actions, and universe membership as known on each date.
-- Neutralize candidate scores against industry and log float market capitalization unless the hypothesis explicitly pre-registers an exposure.
-- Report results separately for large-, mid-, and smaller-cap eligible stocks and reject signals supported only by the smallest bucket.
+- Use the dated S&P 500 ∪ Nasdaq-100 constituent snapshot (universe/latest.csv, versioned by SHA256 ID); do not reconstruct historical index membership. Survivorship bias from current-constituent backtesting is a pre-declared limitation — promoted candidates must pass the wider-universe sensitivity check.
+- Exclude ETFs and ADRs present in the snapshot.
+- Require an unadjusted tradable price of at least USD 5 at signal time.
+- Require 60-day average dollar volume of at least USD 20 million and at least 504 trading days of price history within the snapshot.
+- Use current sector classifications from the snapshot; treat them as static over the backtest window and report any classification-change sensitivity for the longest runs.
+- Neutralize candidate scores against industry unless the hypothesis explicitly pre-registers an exposure.
+- Report results separately by size bucket computed within the snapshot and reject signals supported only by the smallest bucket.
 
-If point-in-time fundamentals, original release timestamps, restatement history, delisting history, or historical classifications are unavailable, identify the exact missing input and stop before executable evaluation rather than using today's revised values.
+If the universe snapshot, price/volume history, or sector metadata is unavailable, identify the exact missing input and stop before executable evaluation rather than substituting unversioned data.
 
 ## Hypothesis Families
 
-Research these mechanisms separately before testing a diversified ensemble:
+Research these technical mechanisms separately before testing a diversified ensemble:
 
-1. Value using earnings yield, free-cash-flow yield, EBITDA or operating-profit yield, and shareholder yield with sector-aware comparisons.
-2. Quality using profitability, gross profitability, ROIC, accruals, leverage, earnings stability, and balance-sheet improvement.
-3. Growth and investment using sustainable revenue or earnings growth, asset growth, capital expenditure efficiency, and profitability-adjusted investment.
-4. Fundamental revisions using earnings surprises, analyst estimate revisions, guidance changes, and post-earnings drift when timestamped data exists.
-5. Medium-term momentum using 12-minus-1-month residual momentum, 6-minus-1-month momentum, trend consistency, and industry-relative strength.
-6. Defensive characteristics using beta, idiosyncratic volatility, downside risk, drawdown resilience, and balance-sheet strength.
+1. Medium-term momentum using 12-minus-1-month residual momentum, 6-minus-1-month momentum, trend consistency, and industry-relative strength.
+2. Volatility structure using Yang-Zhang or Parkinson idiosyncratic volatility, volatility term slope, vol-of-vol, and downside semi-deviation.
+3. Volume and liquidity using Amihud illiquidity on normalized volume, price-volume divergence, turnover z-score dynamics, and abnormal-volume day density.
+4. Trend-with-pullback interactions: short-term weakness inside persistent medium-term drift, gated by trend strength (docs/technical_factor_roadmap.md §3.1).
+5. Defensive characteristics using beta, drawdown resilience, up/down semi-variance ratio, and distance-from-high structure.
+6. Seasonality and calendar structure using month-of-year and turn-of-month residual patterns with multiple-testing discipline applied.
 
-For each family, state the economic mechanism, expected direction, decay horizon, crowding risk, required fields, actual publication lag, and falsification criteria. Generate at most six economically distinct hypotheses and at most four DSL variants per hypothesis. Test individual factors before combining them so ensemble gains can be attributed.
+Fundamental families (value, quality, growth, fundamental revisions) are out of scope for this pipeline's default data layer; propose them only if a documented source vintage is supplied, and they require explicit user authorization.
+
+For each family, state the economic mechanism, expected direction, decay horizon, crowding risk, required fields, and falsification criteria. Generate at most six economically distinct hypotheses and at most four DSL variants per hypothesis. Test individual factors before combining them so ensemble gains can be attributed under the Assembly Gate.
 
 ## Data Timing
 
-- Use the original public release timestamp, not the fiscal-period end date, to make a fundamental observation available.
-- Apply a conservative additional processing lag when exact intraday release time is unavailable.
-- Preserve historical vintages and restatements. Never backfill revised statements into earlier dates.
-- Lag index membership, sector classification, shares, float, and analyst data to their actual availability.
-- Align monthly and quarterly data without treating repeated stale observations as independent daily information.
+- Technical fields (price, volume, volatility) are complete at the close; signals computed after the close trade no earlier than the next session.
+- If any non-technical field is authorized, use its original public release timestamp, not the fiscal-period end date; never backfill revised values into earlier dates.
+- Lag sector classification to the snapshot date; do not imply intraperiod reclassification.
 
 ## Macro Regime Layer
 
@@ -77,4 +76,4 @@ Define interpretable growth, inflation, liquidity, and risk-appetite regimes wit
 - Penalize high correlation with registered factors, excessive complexity, unstable signs, and gains that disappear after realistic publication lags.
 - Record every attempted hypothesis and variant, including failures and duplicates.
 
-Run the available stages automatically. If point-in-time data, DSL operators, the ROCm environment, or the pinned vn.py environment is missing, stop at the corresponding gate and return the precise setup requirements. Do not fabricate a completed backtest.
+Run the available stages automatically. If the universe snapshot, DSL operators, the ROCm environment, or the pinned vn.py environment is missing, stop at the corresponding gate and return the precise setup requirements. Do not fabricate a completed backtest.
