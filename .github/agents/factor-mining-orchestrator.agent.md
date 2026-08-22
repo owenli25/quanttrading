@@ -18,7 +18,8 @@ Run the following stages in order:
 3. `Factor Critic`: independently review each candidate and its experiment specification.
 4. `Factor Experiment Controller`: evaluate only approved candidates with the configured AMD ROCm pipeline.
 5. `VnPy Factor Backtester`: run event-driven backtests only for candidates promoted by the ROCm experiment gate.
-6. `Factor Report`: interpret immutable experiment and backtest artifacts and issue the research decision.
+6. `Factor Experiment Controller` (combination tier, optional): assemble promoted candidates into pre-registered portfolios and evaluate them under the Assembly Gate.
+7. `Factor Report`: interpret immutable experiment and backtest artifacts and issue the research decision.
 
 ## Default Research Contract
 
@@ -79,6 +80,14 @@ Use conservative defaults only for exploratory hypothesis generation. Never inve
 - Require the official `https://github.com/vnpy/vnpy` repository, a pinned release and commit SHA, compatible companion modules, and reconciled accounting.
 - Prefer `vnpy.alpha` or `vnpy_portfoliostrategy` for cross-sectional multi-stock factors. Use CTA modules only when the strategy is genuinely a single-instrument time-series strategy.
 - A failed accounting reconciliation, missing-symbol policy violation, or unauthorized holdout request blocks reporting as a successful result.
+
+### Assembly Gate
+
+- Invoke the combination tier only after individual candidates are promoted; never use it to rescue rejected or unpromoted candidates.
+- Require a pre-registered assembly specification (members, weighting scheme, residual-correlation cap, conflict-netting rule) registered before any portfolio result is observed.
+- A portfolio must beat its best single member and an equal-weight naive blend of the same members, net of costs and deflated, or be reported `non_additive`.
+- Count every assembled combination toward the run's family-wise trial count.
+- Do not iterate assembly specifications against observed results; a new specification is a new pre-registration.
 
 ### Report Gate
 

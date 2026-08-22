@@ -43,6 +43,16 @@ Promotion thresholds apply to net-of-cost metrics only. Gross metrics are report
 - Before promotion, re-evaluate each promoted candidate on at least one wider current-constituent snapshot (e.g. Russell 1000 members) to confirm the signal is not an artifact of the S&P 500 / Nasdaq-100 survivorship bias.
 - Record the wider-universe degradation explicitly; a large decay must be reported as a warning on the promoted artifact.
 
+## Assembly Gate (Combination Tier)
+
+Portfolios are evaluated as a distinct tier after individual promotion, never as a substitute for it.
+
+- **Eligibility**: members may only be individually promoted candidates with immutable signal artifacts. Unpromoted or rejected candidates may not enter a portfolio "to be tested together".
+- **Pre-registered assembly specification** (no post-hoc member shopping): member list, weighting scheme (equal-weight, IC-IR weighted, or inverse-variance), residual-correlation cap (default: pairwise residual-return correlation < 0.5 — diversification, not member Sharpe, is the selection criterion), conflict-netting rule for same-symbol offset signals, and inherited `turnover_control` per member.
+- **Required comparisons**: every portfolio must beat, net of costs and deflated, both (a) its best single member and (b) an equal-weight naive portfolio of the same members. Failure against either is reported as `non_additive` and the portfolio is not promoted.
+- **Trial accounting**: every assembled combination counts toward the run's family-wise trial count; assembling many portfolios and reporting the best is a multiple-testing violation under the existing gates.
+- **Attribution**: promote only with per-member contribution and correlation-matrix artifacts attached so later runs can audit where the increment came from.
+
 ## Constraints
 
 - Never edit factor expressions, hypotheses, evaluation thresholds, or source datasets during an experiment.

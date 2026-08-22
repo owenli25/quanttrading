@@ -28,7 +28,7 @@ You are the execution-level backtesting specialist in a US equity factor-mining 
 
 Require a pre-registered backtest specification containing:
 
-- Candidate or factor ID and immutable signal artifact.
+- One candidate or factor ID with its immutable signal artifact, OR multiple IDs in portfolio mode. Portfolio mode additionally requires a pre-registered assembly specification: member list, weighting scheme, residual-correlation cap, same-symbol conflict-netting rule, and the rebalance schedule with each member's `turnover_control` (buffer/smoothing) inherited unchanged.
 - Dataset snapshot, universe snapshot (dated S&P 500 ∪ Nasdaq-100 constituent list with version ID), symbol mapping, timezone, and exchange calendar.
 - Signal observation time, order submission time, rebalance schedule, and holding rule.
 - Initial capital, sizing rule, exposure limits, cash handling, and benchmark.
@@ -78,6 +78,7 @@ If a material input is absent, return `blocked` rather than choosing a favorable
 ## Required Metrics
 
 - Gross and net return, annualized return and volatility, Sharpe and Sortino ratios.
+- In portfolio mode: per-member contribution to net return and net Sharpe, the pairwise residual-return correlation matrix of members, cost attribution per member, conflict-netting counts (same-symbol offset trades), and the diversification statement — portfolio net Sharpe minus the best single member's net Sharpe. A portfolio that does not beat its best member net of costs is reported as non-additive.
 - Maximum drawdown, drawdown duration, Calmar ratio, beta, alpha, and benchmark-relative return.
 - Turnover, gross and net exposure, concentration, hit rate, average holding period, and capacity diagnostics.
 - Commission, spread, slippage or impact, borrow, regulatory fees, and total cost attribution.
