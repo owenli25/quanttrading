@@ -33,6 +33,8 @@ Require a pre-registered backtest specification containing:
 - Signal observation time, order submission time, rebalance schedule, and holding rule.
 - Initial capital, sizing rule, exposure limits, cash handling, and benchmark.
 - Commission, regulatory fees, spread, slippage or impact, borrow fees, and liquidity limits.
+- Rebalance rank buffer percentage and signal smoothing setting (both must be pre-registered from the candidate's `turnover_control`; changing them after observing results is a protocol violation).
+- Conservative cost floor: large-cap US equities at no less than 8bp per side all-in unless the user supplies a documented execution analysis justifying lower.
 - Start and end dates plus discovery, validation, or final-holdout tier.
 
 If a material input is absent, return `blocked` rather than choosing a favorable default.

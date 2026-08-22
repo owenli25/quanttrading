@@ -154,7 +154,46 @@ Sharpe improvement, reported alongside the unsmoothed version.
 - Multiple-testing discipline and survivorship sensitivity checks per the
   Experiment Controller profile apply to every family here.
 
-## 6. Priorities
+## 6. Net-Sharpe Playbook
+
+Single raw factors on this universe rarely clear costs. The realistic path
+from gross IC to net Sharpe runs through three levers, each governed by
+pre-registered mechanical rules:
+
+### 6.1 Interactions (raise gross IC)
+- Forms: gate (`indicator(cond) × factor`), modulation (`rank(A) × rank(B)`),
+  double sort (quintile on A, rank B within). See the Interaction Discipline
+  in the Factor Research profile: orthogonalize first, pre-register the
+  incremental IC threshold, cap at 6 interactions per run, fix directions
+  before evaluation.
+
+### 6.2 Regime conditioning (stabilize IC)
+- Three levels: total exposure (L1), beta target (L2), factor-sleeve
+  weights (L3). L3 — e.g. low-vol sleeve weighted up in Risk-Off, switch to
+  high-beta quality early in Rebound — is the real incremental source and
+  must pass the pre-registered cross-sectional interaction gate.
+- Engineering requirements: hysteresis dual thresholds (enter below 45%,
+  exit above 55% for breadth-style switches — never single thresholds),
+  thresholds fixed at pre-registered quantiles (never optimized), EMA(5d)
+  sleeve-weight transitions, full ablation battery per the orchestrator.
+
+### 6.3 Turnover control (convert IC into net Sharpe)
+Ranked by cost-effectiveness:
+
+| Tool | Typical effect |
+|---|---|
+| Rank buffer (no-trade band, e.g. re-rank only when rank moves ≥20% of pool) | turnover −40–60% for ~10–15% gross IC cost; usually +0.2–0.4 net Sharpe |
+| Signal smoothing (EMA 3–5d) | turnover −30–50%; strongest on volume factors |
+| Holding-period matching to decay half-life (vol 10–20d, momentum 20–60d, events 5–15d) | avoids paying turnover on dead signals |
+| Inverse-variance weighting (stock and portfolio levels) | smoother path, better Sortino |
+| Explicit turnover budget in portfolio construction | marginal turnover spent where marginal IC is highest |
+
+- Measure candidates on the **turnover-vs-net-Sharpe frontier**: sweep
+  (EMA days × buffer %), pick the operating point on discovery-period
+  frontier shape only. The knee is typically near turnover −50% for <10%
+  gross IC conceded.
+
+## 7. Priorities
 
 | # | Item | Tier | Why |
 |---|---|---|---|
